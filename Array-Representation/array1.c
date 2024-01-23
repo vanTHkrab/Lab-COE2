@@ -13,4 +13,12 @@ void main() {
     for (i = 0; i < n; i++) {
         printf("LA[%d] = %d \n", i, LA[i]);
     }
+
+    for (i = k-1; i < n; i++) {
+        LA[i] = LA[i+1];
+    }
+    printf("The array elements after deletion :\n");
+    for (i = 0; i < n; i++) {
+        printf("LA[%d] = %d \n", i, LA[i]);
+    }
 }
