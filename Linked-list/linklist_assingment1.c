@@ -6,6 +6,7 @@
 void create_node();
 void traverse();
 void delete_node();
+void delete_node_test();
 struct node {
     int DATA;
     struct node *LINK;
@@ -23,7 +24,7 @@ void main() {
         fflush(stdin);
         printf("\n**************************\n");
         printf("Singly Linked List: \n");
-        printf("1.Creating node\n2.Traversing the list\n3.Deleting node\n4.Exit\n");
+        printf("1.Creating node\n2.Traversing the list\n3.Deleting node(has bug)\n4.Deleting node(test)\n5.Exit\n");
         printf("\n**************************\n");
         printf("Enter your choice: ");
         scanf("%d",&ans);
@@ -39,6 +40,9 @@ void main() {
                 delete_node();
                 break;
             case 4:
+                delete_node_test();
+                break;
+            case 5:
                 exit(0);
                 break;
             default: printf("\nEnter correct choice");
@@ -95,44 +99,44 @@ void traverse() { //Printing data in linked list
     }
 }
 
-// void delete_node() {
-//     int data;
-//     struct node *ptemp;
-//     bool success = false;
-//     printf("\n --------- Deletion -----------\n");
-//     printf("Enter data to delete: ");
-//     scanf("%d", &data);
-
-//     ptemp = malloc(sizeof(struct node));
-//     temp = malloc(sizeof(struct node));
-//     //Finding the node that we would like to delete (pointed by temp)
-//     temp = HEAD;
-//     ptemp = temp;
-//     while (temp != NULL) {
-//         if (temp->DATA != data) {
-//             ptemp = temp;
-//             temp = temp->LINK;
-//         }
-//         else break;
-//     }
-//     //Delete the node by linking skip the temp node and free node)
-//     if (temp->LINK == NULL) {
-//         ptemp->LINK = NULL;
-//         success = true;
-//     } 
-//     else {
-//         ptemp->LINK = temp->LINK;
-//         success = true;
-//         free(temp);
-//     }
-
-//     if (success)
-//         printf("Deletion is completed\n");
-//     else
-//         printf("Deletion is not completed\n");
-// }
-
 void delete_node() {
+    int data;
+    struct node *ptemp = NULL;
+    bool success = false;
+    printf("\n --------- Deletion -----------\n");
+    printf("Enter data to delete: ");
+    scanf("%d", &data);
+
+    ptemp = malloc(sizeof(struct node));
+    temp = malloc(sizeof(struct node));
+    //Finding the node that we would like to delete (pointed by temp)
+    temp = HEAD;
+    ptemp = temp;
+    while (temp != NULL) {
+        if (temp->DATA != data) {
+            ptemp = temp;
+            temp = temp->LINK;
+        }
+        else break;
+    }
+    //Delete the node by linking skip the temp node and free node)
+    if (temp->LINK == NULL) {
+        ptemp->LINK = NULL;
+        success = true;
+    } 
+    else {
+        ptemp->LINK = temp->LINK;
+        success = true;
+        free(temp);
+    }
+
+    if (success)
+        printf("Deletion is completed\n");
+    else
+        printf("Deletion is not completed\n");
+}
+
+void delete_node_test() {
     int data;
     struct node *current = HEAD;
     struct node *previous = NULL;
