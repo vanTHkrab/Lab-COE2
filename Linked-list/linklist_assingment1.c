@@ -70,8 +70,6 @@ void create_node() {
     }
 
     else {
-        struct node *temp;
-        temp = malloc(sizeof(struct node));
         temp = HEAD;
         while (temp->LINK != NULL) {
             temp = temp->LINK;

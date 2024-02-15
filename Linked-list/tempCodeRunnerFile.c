@@ -1,1 +1,2 @@
-delete_node_test
+
+    node3 = malloc(sizeof(struct node));
