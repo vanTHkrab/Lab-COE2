@@ -15,6 +15,7 @@ struct node {
 struct node *HEAD = NULL;
 struct node *NEW = NULL;
 struct node *temp = NULL;
+struct node *ptemp = NULL;
 
 void main() {
     int ans;
@@ -47,8 +48,8 @@ void main() {
                 break;
             default: printf("\nEnter correct choice");
         }
-        // printf("\nContinue [y/n] : ");
-        // scanf(" %c",&ch);
+    //     printf("\nContinue [y/n] : ");
+    //     scanf(" %c",&ch);
     // } while (ch == 'y' || ch == 'Y');
     } while (1);
     printf("Exit from the program");
@@ -105,8 +106,6 @@ void delete_node() {
     printf("Enter data to delete: ");
     scanf("%d", &data);
 
-    ptemp = malloc(sizeof(struct node));
-    temp = malloc(sizeof(struct node));
     //Finding the node that we would like to delete (pointed by temp)
     temp = HEAD;
     ptemp = temp;
