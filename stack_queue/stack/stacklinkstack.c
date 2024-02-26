@@ -8,12 +8,6 @@ struct StackNode {
 };
 
 struct StackNode* Newnode(struct StackNode* root, int data) {
-    if (Nextstack(root) == NULL) {
-        printf("NULL\n");
-    }
-    else {
-        printf("StackNode is create\n");
-    }
     struct StackNode* stackNode = (struct StackNode*)malloc(sizeof(struct StackNode));
     stackNode->data = data;
     stackNode->next = NULL;
@@ -46,35 +40,15 @@ int peek(struct StackNode* root) {
 }
 
 int main() {
-    struct StackNode* root = NULL;
-    int ans, num;
-    int i = 0;
-    do {
-        printf("**********************************\n");
-        printf("1.Push\n2.Pop\n3.Peek\n4.\n-> ");
-        scanf("%d", &ans);
-        switch (ans)
-        {
-        case 1:
-            printf("Enter Number -> ");
-            scanf("%d", &num);
-            push(&root, num);
-            i++;
-            break;
-        case 2:
-            printf("%d is are delete\n", pop(&root));
-            i--;
-        case 3:
-            if (i == 0) {
-                printf("NULL\n");
-            }
-            else {
-                printf("%d is a top number\n", peek(root));
-            }
-            break;
-        default:
-            break;
-        }
-    } while(1);
+    struct StackNode* stack1 = NULL;
+    struct StackNode* stack2 = NULL;
+
+    push(&stack1, 1);
+
+    push(&stack2, 3);
+
+    printf("peek stack1: %d\n", peek(stack1));
+    printf("peek stack2: %d\n", peek(stack2));
+
     return 0;
 }
