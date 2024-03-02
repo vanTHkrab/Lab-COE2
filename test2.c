@@ -217,20 +217,34 @@ int main() {
                 break;
     // ----------------------------------------------------------------------------------------------------------------
             case 3:
-                printf("Enter money to exchange (50 OR 100): ");
-                scanf("%d", &amount);
                 int coins, tokens;
-                if (amount == 50) {
-                    coins = 4;
-                    tokens = 1;
-                } else if (amount == 100) {
-                    coins = 8;
-                    tokens = 2;
-                } else {
-                    printf("Invalid amount. Please enter either 50 or 100.\n");
+                do {
+                    printf("Enter money to exchange\n");
+                    printf("1.50 Baht\n");
+                    printf("2.100 Baht\n");
+                    printf("3.Back to menu\n");
+                    printf("->");
+                    scanf("%d", &ans);
+                    switch (ans) {
+                        case 1:
+                            coins = 4;
+                            tokens = 1;                            
+                            break;
+                        case 2:
+                            coins = 8;
+                            tokens = 2;
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            printf("Invalid amount\n");
+                            break;
+                    }
+                } while (ans < 1 || ans > 3);
+                if (ans != 3) {
+                    printf("You get %d coins and %d tokens.\n", coins, tokens);
+                    printf("\n");
                 }
-                printf("You get %d coins and %d tokens.\n", coins, tokens);
-                printf("\n");
                 break;
     // ----------------------------------------------------------------------------------------------------------------
             case 4:
