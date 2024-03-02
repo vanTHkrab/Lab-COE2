@@ -3,9 +3,10 @@
 
 int main() {
 
-    int mode, size, t, ans, amount, choice;
+    int mode, size, t, ans, amount, choice, coins, tokens;
     char name[100], coupon_code[100];
     float discount, price;
+
     while (1){
         printf("**********************************\n");
         printf("Welcome to the laundry program!\n");
@@ -164,7 +165,7 @@ int main() {
                                 discount = 0;
                                 break;
                             }
-                            else if(strcmp(coupon_code, "DISCOUNT10") == 0) {
+                            if(strcmp(coupon_code, "DISCOUNT10") == 0) {
                                 discount = 10 / 100; //10% discount
                                 break;
                             } 
@@ -217,7 +218,6 @@ int main() {
                 break;
     // ----------------------------------------------------------------------------------------------------------------
             case 3:
-                int coins, tokens;
                 do {
                     printf("Enter money to exchange\n");
                     printf("1.50 Baht\n");
