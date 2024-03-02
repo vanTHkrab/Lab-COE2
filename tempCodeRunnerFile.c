@@ -1,1 +1,1 @@
-DISCOUNT10
+total_price_dryer_machine

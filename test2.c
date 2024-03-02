@@ -166,43 +166,43 @@ int main() {
                                 break;
                             }
                             if(strcmp(coupon_code, "DISCOUNT10") == 0) {
-                                discount = 10 / 100; //10% discount
+                                discount = 10.0 / 100.0; //10% discount
                                 break;
                             } 
                             else if(strcmp(coupon_code, "DISCOUNT20") == 0) {
-                                discount = 20 / 100; //20% discount
+                                discount = 20.0 / 100.0; //20% discount
                                 break;
                             } 
                             else if(strcmp(coupon_code, "DISCOUNT30") == 0) {
-                                discount = 30 / 100; //30% discount
+                                discount = 30.0 / 100.0; //30% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT40") == 0) {
-                                discount = 40 / 100; //40% discount
+                                discount = 40.0 / 100.0; //40% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT50") == 0) {
-                                discount = 50 / 100; //50% discount
+                                discount = 50.0 / 100.0; //50% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT60") == 0) {
-                                discount = 60 / 100; //60% discount
+                                discount = 60.0 / 100.0; //60% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT70") == 0) {
-                                discount = 70 / 100; //70% discount
+                                discount = 70.0 / 100.0; //70% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT80") == 0) {
-                                discount = 80 / 100; //80% discount
+                                discount = 80.0 / 100.0; //80% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT90") == 0) {
-                                discount = 90 / 100; //90% discount
+                                discount = 90.0 / 100.0; //90% discount
                                 break;
                             }
                             else if(strcmp(coupon_code, "DISCOUNT100") == 0) {
-                                discount = 100 / 100;
+                                discount = 100.0 / 100.0;
                                 break;
                             }
                             else {
