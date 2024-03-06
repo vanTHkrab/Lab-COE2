@@ -8,6 +8,7 @@ void traverse();
 void delete_node();
 void delete_node_test();
 void insert();
+void insert2();
 
 struct node {
     int DATA;
@@ -51,6 +52,9 @@ void main() {
                 insert();
                 break;
             case 6:
+                insert2();
+                break;
+            case 7:
                 exit(0);
             default: printf("\nEnter correct choice");
         }
@@ -202,6 +206,37 @@ void insert() {
         }
     }
     if (temp == HEAD) {
+        NEW->LINK = temp;
+        HEAD = NEW;
+    }
+    else {
+        ptemp->LINK = NEW;
+        NEW->LINK = temp;
+    }
+}
+
+void insert2(){
+    int p;
+    if (HEAD == NULL) {
+        return;
+    }
+    temp = ptemp = HEAD;
+    NEW = malloc(sizeof(struct node));
+    printf("Enter data: ");
+    scanf("%d", &NEW->DATA);
+    printf("Position: ");
+    scanf("%d", &p);
+    for (int i = 0; i < p - 1; i++){
+        if (temp->LINK == NULL) {
+            free(NEW);
+            return;
+        }
+        else{
+        ptemp = temp;
+        temp = temp->LINK;
+        }
+    }
+        if (temp == HEAD) {
         NEW->LINK = temp;
         HEAD = NEW;
     }
