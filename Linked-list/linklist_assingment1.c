@@ -187,11 +187,12 @@ void insert() {
     NEW = malloc(sizeof(struct node));
     printf("Insert data: ");
     scanf("%d", &NEW->DATA);
-    printf("At behind data: ");
+    printf("At before data: ");
     scanf("%d", &p);
     temp = ptemp = HEAD;
     while (temp->DATA != p){
         if (temp->LINK == NULL){
+            printf("Not found\n");
             free(NEW);
             return;
         }
@@ -200,10 +201,9 @@ void insert() {
             temp = temp->LINK;
         }
     }
-    if (ptemp == HEAD) {
-        temp = temp->LINK;
-        ptemp->LINK = NEW;
+    if (temp == HEAD) {
         NEW->LINK = temp;
+        HEAD = NEW;
     }
     else {
         ptemp->LINK = NEW;
