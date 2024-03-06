@@ -7,25 +7,29 @@ void create_node();
 void traverse();
 void delete_node();
 void delete_node_test();
+void insert();
+
 struct node {
     int DATA;
     struct node *LINK;
-};
+}*HEAD, *NEW, *temp, *ptemp;
 
-struct node *HEAD = NULL;
-struct node *NEW = NULL;
-struct node *temp = NULL;
-struct node *ptemp = NULL;
+
+
+// struct node *HEAD = NULL;
+// struct node *NEW = NULL;
+// struct node *temp = NULL;
+// struct node *ptemp = NULL;
 
 void main() {
+    HEAD = NULL;
     int ans;
     char ch;
-    int data;
     do {
-        fflush(stdin);
+        // fflush(stdin);
         printf("\n**************************\n");
         printf("Singly Linked List: \n");
-        printf("1.Creating node\n2.Traversing the list\n3.Deleting node(has bug)\n4.Deleting node(test)\n5.Exit\n");
+        printf("1.Creating node\n2.Traversing the list\n3.Deleting node(has bug)\n4.Deleting node(test)\n5.Insert\n6.exit ");
         printf("\n**************************\n");
         printf("Enter your choice: ");
         scanf("%d",&ans);
@@ -44,8 +48,10 @@ void main() {
                 delete_node_test();
                 break;
             case 5:
-                exit(0);
+                insert();
                 break;
+            case 6:
+                exit(0);
             default: printf("\nEnter correct choice");
         }
     //     printf("\nContinue [y/n] : ");
@@ -90,7 +96,6 @@ void traverse() { //Printing data in linked list
         printf("List is empty\n");
         return;
     }
-    temp = malloc(sizeof(struct node));
     temp = HEAD;
     while (temp != NULL) {
         printf("%d ", temp->DATA);
@@ -102,10 +107,14 @@ void delete_node() {
     int data;
     struct node *ptemp = NULL;
     bool success = false;
+    if (HEAD == NULL) {
+        printf("List is empty\n");
+        return;
+    }
     printf("\n --------- Deletion -----------\n");
     printf("Enter data to delete: ");
     scanf("%d", &data);
-
+    
     //Finding the node that we would like to delete (pointed by temp)
     temp = HEAD;
     ptemp = temp;
@@ -138,14 +147,13 @@ void delete_node_test() {
     struct node *current = HEAD;
     struct node *previous = NULL;
     bool success = false;
-    printf("\n --------- Deletion -----------\n");
-    printf("Enter data to delete: ");
-    scanf("%d", &data);
-
     if (HEAD == NULL) {
         printf("List is empty\n");
         return;
     }
+    printf("\n --------- Deletion -----------\n");
+    printf("Enter data to delete: ");
+    scanf("%d", &data);
 
     while (current->DATA != data) {
         if (current->LINK == NULL) {
@@ -159,14 +167,46 @@ void delete_node_test() {
     }
     if (current == HEAD) {
         HEAD = HEAD->LINK;
-        success = true;
+        // success = true;
     }
     else {
         previous->LINK = current->LINK;
-        success = true;
+        // success = true;
     }
     if (success)
         printf("Deletion is completed\n");
     else
         printf("Deletion is not completed\n");
+}
+
+void insert() {
+    int p;
+    if (HEAD == NULL) {
+        return;
+    }
+    NEW = malloc(sizeof(struct node));
+    printf("Insert data: ");
+    scanf("%d", &NEW->DATA);
+    printf("At behind data: ");
+    scanf("%d", &p);
+    temp = ptemp = HEAD;
+    while (temp->DATA != p){
+        if (temp->LINK == NULL){
+            free(NEW);
+            return;
+        }
+        else {
+            ptemp = temp;
+            temp = temp->LINK;
+        }
+    }
+    if (ptemp == HEAD) {
+        temp = temp->LINK;
+        ptemp->LINK = NEW;
+        NEW->LINK = temp;
+    }
+    else {
+        ptemp->LINK = NEW;
+        NEW->LINK = temp;
+    }
 }
