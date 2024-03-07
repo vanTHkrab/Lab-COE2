@@ -226,7 +226,7 @@ void insert2(){
     scanf("%d", &NEW->DATA);
     printf("Position: ");
     scanf("%d", &p);
-    for (int i = 0; i < p - 1; i++){
+    for (int i = 1; i < p; i++){
         if (temp->LINK == NULL) {
             free(NEW);
             return;
