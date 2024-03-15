@@ -1,6 +1,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdbool.h>
 
 struct StackNode {
     int data, size;
@@ -12,27 +13,26 @@ int isEmpty(struct StackNode* root){
     return !root;
 }
 
-int Full(struct StackNode* root) {
-    int size, capacity;
-    if (isEmpty) {
-        size = capacity = 0;
+bool Full(struct StackNode* root) {
+    if (isEmpty(root)) return NULL;
+    if (root->capacity != root->size) {
+        return 1;
     }
+    else return 0;
 }
 
 struct StackNode* newnode(struct StackNode* root, int data)
 {
-
     struct StackNode* stacknode = (struct StackNode*)malloc(sizeof(struct StackNode));
     stacknode->data = data;
     stacknode->next = NULL;
+    stacknode->size = root->size +1;
+    stacknode->capacity = root->capacity;
     return stacknode;
 };
 
 void push(struct StackNode** root, int data) {
-    if (Full(*root)) {
-        printf("FULL/n");
-        return;
-        }
+    if (Full(*root)) return;
     struct StackNode* node = newnode(*root, data);
     node->next = *root;
     *root = node;
@@ -60,11 +60,10 @@ int pop(struct StackNode** root) {
 }
 
 int main(void) {
-    struct StackNode* root = capacity(1);
-    printf("Peek: %d\n", peek(root));
+    struct StackNode* root = createstack(root, 3);
     push(&root, 10);
     push(&root, 20);
-    printf("Peek: %d\n", peek(root));
-    printf("Pop: %d\n", pop(&root));
-    printf("Peek: %d\n", peek(root));
+    push(&root, 30);
+    push(&root, 40);
+    printf("%d", peek(root));
 }
