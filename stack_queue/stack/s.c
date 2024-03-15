@@ -1,69 +1,77 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <stdbool.h>
 
 struct StackNode {
-    int data, size;
-    unsigned capacity;
+    int data;
     struct StackNode* next;
 };
 
-int isEmpty(struct StackNode* root){
-    return !root;
-}
-
-bool Full(struct StackNode* root) {
-    if (isEmpty(root)) return NULL;
-    if (root->capacity != root->size) {
-        return 1;
-    }
-    else return 0;
-}
-
-struct StackNode* newnode(struct StackNode* root, int data)
-{
-    struct StackNode* stacknode = (struct StackNode*)malloc(sizeof(struct StackNode));
-    stacknode->data = data;
-    stacknode->next = NULL;
-    stacknode->size = root->size +1;
-    stacknode->capacity = root->capacity;
-    return stacknode;
+struct Stack {
+    struct StackNode* top;
+    unsigned capacity;
+    unsigned size;
 };
 
-void push(struct StackNode** root, int data) {
-    if (Full(*root)) return;
-    struct StackNode* node = newnode(*root, data);
-    node->next = *root;
-    *root = node;
+struct Stack* createStack(unsigned capacity) {
+    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    stack->capacity = capacity;
+    stack->top = NULL;
+    stack->size = 0;
+    return stack;
+}
+
+bool isFull(struct Stack* stack) {
+    return stack->size == stack->capacity;
+}
+
+bool isEmpty(struct Stack* stack) {
+    return stack->top == NULL;
+}
+
+void push(struct Stack* stack, int data) {
+    if (isFull(stack)) {
+        printf("Stack is Full\n");
+        return;
+    }
+    struct StackNode* newNode = (struct StackNode*)malloc(sizeof(struct StackNode));
+    newNode->data = data;
+    newNode->next = stack->top;
+    stack->top = newNode;
+    stack->size++;
     printf("push: %d\n", data);
 }
 
-int peek(struct StackNode* root) {
-    if(isEmpty(root)){
-        printf("NULL\n");
+int peek(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Data is empty\n");
         return INT_MIN;
     }
-    return (root->data);
+    return stack->top->data;
 }
 
-int pop(struct StackNode** root) {
-        if(isEmpty(*root)){
-        printf("NULL\n");
+int pop(struct Stack* stack) {
+    if (isEmpty(stack)) {
+        printf("Data is empty\n");
         return INT_MIN;
     }
-    struct StackNode* temp = *root;
-    *root = (*root)->next;
+    struct StackNode* temp = stack->top;
+    stack->top = stack->top->next;
     int popped = temp->data;
     free(temp);
+    stack->size--;
     return popped;
 }
 
 int main(void) {
-    struct StackNode* root = createstack(root, 3);
-    push(&root, 10);
-    push(&root, 20);
-    push(&root, 30);
-    push(&root, 40);
-    printf("%d", peek(root));
+    struct Stack* stack = createStack(3);
+    push(stack, 10);
+    push(stack, 20);
+    push(stack, 30);
+    push(stack, 40);
+    printf("Top element: %d\n", peek(stack));
+    printf("Popped element: %d\n", pop(stack));
+    printf("Top element after pop: %d\n", peek(stack));
+    return 0;
 }
