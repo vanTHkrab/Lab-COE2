@@ -3,15 +3,14 @@
 #include <limits.h>
 #include <stdbool.h>
 
-struct StackNode {
+struct node {
     int data;
-    struct StackNode* next;
+    struct node* next;
 };
 
 struct Stack {
-    struct StackNode* top;
-    unsigned capacity;
-    unsigned size;
+    unsigned capacity, size;
+    struct node* top;
 };
 
 struct Stack* createStack(unsigned capacity) {
@@ -35,7 +34,7 @@ void push(struct Stack* stack, int data) {
         printf("Stack is Full\n");
         return;
     }
-    struct StackNode* newNode = (struct StackNode*)malloc(sizeof(struct StackNode));
+    struct node* newNode = (struct node*)malloc(sizeof(struct node));
     newNode->data = data;
     newNode->next = stack->top;
     stack->top = newNode;
@@ -56,7 +55,7 @@ int pop(struct Stack* stack) {
         printf("Data is empty\n");
         return INT_MIN;
     }
-    struct StackNode* temp = stack->top;
+    struct node* temp = stack->top;
     stack->top = stack->top->next;
     int popped = temp->data;
     free(temp);
@@ -71,6 +70,9 @@ int main(void) {
     push(stack, 30);
     push(stack, 40);
     printf("Top element: %d\n", peek(stack));
+    printf("Popped element: %d\n", pop(stack));
+    printf("Top element after pop: %d\n", peek(stack));
+    printf("Popped element: %d\n", pop(stack));
     printf("Popped element: %d\n", pop(stack));
     printf("Top element after pop: %d\n", peek(stack));
     return 0;
