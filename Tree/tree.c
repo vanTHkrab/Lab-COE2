@@ -93,6 +93,19 @@ struct tree* findMin(struct tree* node) {
     return node;
 }
 
+bool search(struct tree* root, int target) {
+    if (target > root->data) {
+        search(root->right, target);
+    }
+    else if(target < root->data) {
+        search(root->left, target);
+    }
+    if (target == root->data){
+        return 1;
+    }
+    return 0;
+}
+
 int main(void) {
     struct tree* root = NULL;
     struct tree* root2 = NULL;
@@ -115,4 +128,13 @@ int main(void) {
     delete(&root, 43);
     printf("\n");
     print(root);
+    printf("\n");
+    if (search(root, 13) == 1) {
+        printf("found");
+    }
+    else if (search(root, 13) == 0)
+    {
+        printf("Not found");
+    }
+    
 }
